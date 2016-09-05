@@ -1,0 +1,1 @@
+k30: mov eax, dword ptr ss:arr1[ebx + esi * 4a3h + 40h] 

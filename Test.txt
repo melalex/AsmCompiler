@@ -1,0 +1,450 @@
+1: Data1 Segment 
+Size: 0
+0  DATA1   5  INDEFINITE                        
+1  SEGMENT 7  DIRECTIVE                         
+0   1   1   
+
+2: 		vыs db 11hп
+Size: 0
+0  V       1  INDEFINITE                        
+1  Ы       1  INDEFINITE                        
+2  S       1  INDEFINITE                        
+3  DB      2  DIRECTIVE                         
+4  11H     3  HEXADECIMAL_CONSTANT              
+5  П       1  INDEFINITE                        
+0   -1  -1  1   5   
+UNKNOWN   : NOTHING NOTHING NOTHING Ы       NOTHING NOTHING NOTHING   NOTHING        
+
+3: 		var2 dw 45р67h
+Size: 2
+0  VAR2    4  INDEFINITE                        
+1  DW      2  DIRECTIVE                         
+2  45      2  INDEFINITE                        
+3  Р       1  INDEFINITE                        
+4  67H     3  HEXADECIMAL_CONSTANT              
+0   1   1   2   3   
+UNKNOWN   : NOTHING NOTHING NOTHING 45      NOTHING NOTHING NOTHING   NOTHING        
+
+4: 		str1 db "Гыч"
+Size: 6
+0  STR1    4  INDEFINITE                        
+1  DB      2  DIRECTIVE                         
+2  "Гыч"   5  TEXT_CONSTANT                     
+0   1   1   2   1   
+IMMEDIATE : NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   "Гыч"          
+
+5: Data1 Ends
+Size: 0
+0  DATA1   5  INDEFINITE                        
+1  ENDS    4  DIRECTIVE                         
+0   1   1   
+
+6: 
+Size: 0
+-1  -1  -1  
+
+7: Data2 Segment
+Size: 0
+0  DATA2   5  INDEFINITE                        
+1  SEGMENT 7  DIRECTIVE                         
+0   1   1   
+
+8: 		var3 dd 0fdah
+Size: 4
+0  VAR3    4  INDEFINITE                        
+1  DD      2  DIRECTIVE                         
+2  0FDAH   5  HEXADECIMAL_CONSTANT              
+0   1   1   2   1   
+IMMEDIATE : NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING 0FDAH     NOTHING        
+
+9: 		var4 dw 322h
+Size: 2
+0  VAR4    4  INDEFINITE                        
+1  DW      2  DIRECTIVE                         
+2  322H    4  HEXADECIMAL_CONSTANT              
+0   1   1   2   1   
+IMMEDIATE : NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING 322H      NOTHING        
+
+10: Data2 Ends
+Size: 0
+0  DATA2   5  INDEFINITE                        
+1  ENDS    4  DIRECTIVE                         
+0   1   1   
+
+11: 
+Size: 0
+-1  -1  -1  
+
+12: var	equ	var3	
+Size: 0
+0  VAR     3  INDEFINITE                        
+1  EQU     3  DIRECTIVE                         
+2  VAR3    4  DWORD_USER_IDENTIFIER             
+0   1   1   2   1   
+IMMEDIATE : NOTHING NOTHING VAR3    NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+13: cost equ strt2
+Size: 0
+0  COST    4  INDEFINITE                        
+1  EQU     3  DIRECTIVE                         
+2  STRT2   5  INDEFINITE                        
+0   1   1   2   1   
+UNKNOWN   : NOTHING NOTHING NOTHING STRT2   NOTHING NOTHING NOTHING   NOTHING        
+
+14: sss equ [edx+2h]
+Size: 0
+0  SSS     3  INDEFINITE                        
+1  EQU     3  DIRECTIVE                         
+2  [EDX+2H]8  INDEFINITE                        
+0   1   1   2   1   
+UNKNOWN   : NOTHING NOTHING NOTHING [EDX+2H]NOTHING NOTHING NOTHING   NOTHING        
+
+15: 
+Size: 0
+-1  -1  -1  
+
+16: Code1 Segment
+Size: 0
+0  CODE1   5  INDEFINITE                        
+1  SEGMENT 7  DIRECTIVE                         
+0   1   1   
+
+CS  CODE1 
+SS  null  
+GS  null  
+FS  null  
+ES  DATA2 
+DS  DATA1 
+
+17: assume	cs:Code1, ds:Data1, es:Data2
+Size: 0
+0  ASSUME  6  DIRECTIVE                         
+1  CS      2  SEGMENT_REGISTER                  
+2  :       1  A_SINGLE_CHARACTER                
+3  CODE1   5  INDEFINITE                        
+4  ,       1  A_SINGLE_CHARACTER                
+5  DS      2  SEGMENT_REGISTER                  
+6  :       1  A_SINGLE_CHARACTER                
+7  DATA1   5  INDEFINITE                        
+8  ,       1  A_SINGLE_CHARACTER                
+9  ES      2  SEGMENT_REGISTER                  
+10 :       1  A_SINGLE_CHARACTER                
+11 DATA2   5  INDEFINITE                        
+-1  0   1   1   3   5   3   9   3   
+UNKNOWN   : NOTHING CS      NOTHING CODE1   NOTHING NOTHING NOTHING   NOTHING        
+UNKNOWN   : NOTHING DS      NOTHING DATA1   NOTHING NOTHING NOTHING   NOTHING        
+UNKNOWN   : NOTHING ES      NOTHING DATA2   NOTHING NOTHING NOTHING   NOTHING        
+
+18: strt1:	cli
+Size: 1
+0  STRT1   5  INDEFINITE                        
+1  :       1  A_SINGLE_CHARACTER                
+2  CLI     3  MACHINE_INSTRUCTION               
+0   2   1   
+
+19: 
+Size: 0
+-1  -1  -1  
+
+20: 		dec eax
+Size: 2
+0  DEC     3  MACHINE_INSTRUCTION               
+1  EAX     3  IDENTIFIER_32BIT_DATA_REGISTER    
+-1  0   1   1   1   
+REGISTER  : EAX     NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+21: 		dec ax
+Size: 2
+0  DEC     3  MACHINE_INSTRUCTION               
+1  AX      2  IDENTIFIER_16BIT_DATA_REGISTER    
+-1  0   1   1   1   
+REGISTER  : AX      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+22: 		dec al
+Size: 2
+0  DEC     3  MACHINE_INSTRUCTION               
+1  AL      2  IDENTIFIER_8BIT_DATA_REGISTER     
+-1  0   1   1   1   
+REGISTER  : AL      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+23: 		
+Size: 0
+-1  -1  -1  
+
+24: 		jmp cost
+Size: 5
+0  JMP     3  MACHINE_INSTRUCTION               
+1  STRT2   5  INDEFINITE                        
+-1  0   1   1   1   
+UNKNOWN   : NOTHING NOTHING NOTHING STRT2   NOTHING NOTHING NOTHING   NOTHING        
+
+25: 		
+Size: 0
+-1  -1  -1  
+
+26: 		pop  var2 sss
+Size: 7
+0  POP     3  MACHINE_INSTRUCTION               
+1  VAR32   5  INDEFINITE                        
+2  [       1  A_SINGLE_CHARACTER                
+3  EDX     3  IDENTIFIER_32BIT_ADDRESS_REGISTER 
+4  +       1  A_SINGLE_CHARACTER                
+5  2H      2  HEXADECIMAL_CONSTANT              
+6  ]       1  A_SINGLE_CHARACTER                
+-1  0   1   1   6   
+MEMORY    : NOTHING NOTHING NOTHING VAR32   EDX     +       2H        NOTHING        
+
+27: 		
+Size: 0
+-1  -1  -1  
+
+28: 		cmp eax, ebx
+Size: 3
+0  CMP     3  MACHINE_INSTRUCTION               
+1  EAX     3  IDENTIFIER_32BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  EBX     3  IDENTIFIER_32BIT_DATA_REGISTER    
+-1  0   1   1   1   3   1   
+REGISTER  : EAX     NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+REGISTER  : EBX     NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+29: 		cmp ax, bx
+Size: 2
+0  CMP     3  MACHINE_INSTRUCTION               
+1  AX      2  IDENTIFIER_16BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  BX      2  IDENTIFIER_16BIT_DATA_REGISTER    
+-1  0   1   1   1   3   1   
+REGISTER  : AX      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+REGISTER  : BX      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+30: 		cmp al, bl
+Size: 2
+0  CMP     3  MACHINE_INSTRUCTION               
+1  AL      2  IDENTIFIER_8BIT_DATA_REGISTER     
+2  ,       1  A_SINGLE_CHARACTER                
+3  BL      2  IDENTIFIER_8BIT_DATA_REGISTER     
+-1  0   1   1   1   3   1   
+REGISTER  : AL      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+REGISTER  : BL      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+31: 		
+Size: 0
+-1  -1  -1  
+
+32: 		or eax, es:var3[si+ 2gh]
+Size: 6
+0  OR      2  MACHINE_INSTRUCTION               
+1  EAX     3  IDENTIFIER_32BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  ES      2  SEGMENT_REGISTER                  
+4  :       1  A_SINGLE_CHARACTER                
+5  VAR33   5  INDEFINITE                        
+6  [       1  A_SINGLE_CHARACTER                
+7  SI      2  IDENTIFIER_16BIT_ADDRESS_REGISTER 
+8  +       1  A_SINGLE_CHARACTER                
+9  2       1  INDEFINITE                        
+10 GH      2  INDEFINITE                        
+11 ]       1  A_SINGLE_CHARACTER                
+-1  0   1   1   1   3   9   
+REGISTER  : EAX     NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+UNKNOWN   : NOTHING ES      NOTHING VAR33   SI      +       NOTHING   NOTHING        
+
+33: 		or al, var1[di+4h]
+Size: 4
+0  OR      2  MACHINE_INSTRUCTION               
+1  AL      2  IDENTIFIER_8BIT_DATA_REGISTER     
+2  ,       1  A_SINGLE_CHARACTER                
+3  VAR31   5  INDEFINITE                        
+4  [       1  A_SINGLE_CHARACTER                
+5  DI      2  IDENTIFIER_16BIT_ADDRESS_REGISTER 
+6  +       1  A_SINGLE_CHARACTER                
+7  4H      2  HEXADECIMAL_CONSTANT              
+8  ]       1  A_SINGLE_CHARACTER                
+-1  0   1   1   1   3   6   
+REGISTER  : AL      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+MEMORY    : NOTHING NOTHING NOTHING VAR31   DI      +       4H        NOTHING        
+
+34: 		
+Size: 0
+-1  -1  -1  
+
+35: 		js l1
+Size: 4
+0  JS      2  MACHINE_INSTRUCTION               
+1  L1      2  INDEFINITE                        
+-1  0   1   1   1   
+UNKNOWN   : NOTHING NOTHING NOTHING L1      NOTHING NOTHING NOTHING   NOTHING        
+
+36: 		mov edx, 100h
+Size: 6
+0  MOV     3  MACHINE_INSTRUCTION               
+1  EDX     3  IDENTIFIER_32BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  100H    4  HEXADECIMAL_CONSTANT              
+-1  0   1   1   1   3   1   
+REGISTER  : EDX     NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+IMMEDIATE : NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING 100H      NOTHING        
+
+37: 		lds si, var[esp]
+Size: 9
+0  LDS     3  MACHINE_INSTRUCTION               
+1  SI      2  IDENTIFIER_16BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  VAR3    4  DWORD_USER_IDENTIFIER             
+4  [       1  A_SINGLE_CHARACTER                
+5  ESP     3  IDENTIFIER_32BIT_ADDRESS_REGISTER 
+6  ]       1  A_SINGLE_CHARACTER                
+-1  0   1   1   1   3   4   
+REGISTER  : SI      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+MEMORY    : NOTHING ES      VAR3    NOTHING ESP     NOTHING NOTHING   NOTHING        
+
+38: 		
+Size: 0
+-1  -1  -1  
+
+39: l1:		jmp var3
+Size: 5
+0  L1      2  INDEFINITE                        
+1  :       1  A_SINGLE_CHARACTER                
+2  JMP     3  MACHINE_INSTRUCTION               
+3  VAR33   5  INDEFINITE                        
+0   2   1   3   1   
+UNKNOWN   : NOTHING NOTHING NOTHING VAR33   NOTHING NOTHING NOTHING   NOTHING        
+
+40: Code1 ends
+Size: 0
+0  CODE1   5  INDEFINITE                        
+1  ENDS    4  DIRECTIVE                         
+0   1   1   
+
+41: 
+Size: 0
+-1  -1  -1  
+
+42: Code2 Segment
+Size: 0
+0  CODE2   5  INDEFINITE                        
+1  SEGMENT 7  DIRECTIVE                         
+0   1   1   
+
+CS  CODE2 
+SS  null  
+GS  null  
+FS  null  
+ES  DATA2 
+DS  DATA1 
+
+43: assume	cs:Code2, ds:Data1, es:Data2 
+Size: 0
+0  ASSUME  6  DIRECTIVE                         
+1  CS      2  SEGMENT_REGISTER                  
+2  :       1  A_SINGLE_CHARACTER                
+3  CODE2   5  INDEFINITE                        
+4  ,       1  A_SINGLE_CHARACTER                
+5  DS      2  SEGMENT_REGISTER                  
+6  :       1  A_SINGLE_CHARACTER                
+7  DATA1   5  INDEFINITE                        
+8  ,       1  A_SINGLE_CHARACTER                
+9  ES      2  SEGMENT_REGISTER                  
+10 :       1  A_SINGLE_CHARACTER                
+11 DATA2   5  INDEFINITE                        
+-1  0   1   1   3   5   3   9   3   
+UNKNOWN   : NOTHING CS      NOTHING CODE2   NOTHING NOTHING NOTHING   NOTHING        
+UNKNOWN   : NOTHING DS      NOTHING DATA1   NOTHING NOTHING NOTHING   NOTHING        
+UNKNOWN   : NOTHING ES      NOTHING DATA2   NOTHING NOTHING NOTHING   NOTHING        
+
+44: strt2:  shr var2[edx], cl
+Size: 7
+0  STRT2   5  INDEFINITE                        
+1  :       1  A_SINGLE_CHARACTER                
+2  SHR     3  MACHINE_INSTRUCTION               
+3  VAR32   5  INDEFINITE                        
+4  [       1  A_SINGLE_CHARACTER                
+5  EDX     3  IDENTIFIER_32BIT_ADDRESS_REGISTER 
+6  ]       1  A_SINGLE_CHARACTER                
+7  ,       1  A_SINGLE_CHARACTER                
+8  CL      2  IDENTIFIER_8BIT_DATA_REGISTER     
+0   2   1   3   4   8   1   
+MEMORY    : NOTHING NOTHING NOTHING VAR32   EDX     NOTHING NOTHING   NOTHING        
+REGISTER  : CL      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+45: 		jmp strt1
+Size: 5
+0  JMP     3  MACHINE_INSTRUCTION               
+1  STRT1   5  LABEL                             
+-1  0   1   1   1   
+IMMEDIATE : NOTHING NOTHING STRT1   NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+46: 		
+Size: 0
+-1  -1  -1  
+
+47: 		mov dx, 5634h
+Size: 3
+0  MOV     3  MACHINE_INSTRUCTION               
+1  DX      2  IDENTIFIER_16BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  5634H   5  HEXADECIMAL_CONSTANT              
+-1  0   1   1   1   3   1   
+REGISTER  : DX      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+IMMEDIATE : NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING 5634H     NOTHING        
+
+48: 		
+Size: 0
+-1  -1  -1  
+
+49: 		lds bx, var3[esp]
+Size: 9
+0  LDS     3  MACHINE_INSTRUCTION               
+1  BX      2  IDENTIFIER_16BIT_DATA_REGISTER    
+2  ,       1  A_SINGLE_CHARACTER                
+3  VAR33   5  INDEFINITE                        
+4  [       1  A_SINGLE_CHARACTER                
+5  ESP     3  IDENTIFIER_32BIT_ADDRESS_REGISTER 
+6  ]       1  A_SINGLE_CHARACTER                
+-1  0   1   1   1   3   4   
+REGISTER  : BX      NOTHING NOTHING NOTHING NOTHING NOTHING NOTHING   NOTHING        
+MEMORY    : NOTHING NOTHING NOTHING VAR33   ESP     NOTHING NOTHING   NOTHING        
+
+50: 		
+Size: 0
+-1  -1  -1  
+
+51: 		js strt2
+Size: 2
+0  JS      2  MACHINE_INSTRUCTION               
+1  STRT2   5  LABEL                             
+-1  0   1   1   1   
+IMMEDIATE : NOTHING NOTHING STRT2   NOTHING NOTHING NOTHING NOTHING   NOTHING        
+
+52: Code2 ends
+Size: 0
+0  CODE2   5  INDEFINITE                        
+1  ENDS    4  DIRECTIVE                         
+0   1   1   
+
+53: end
+Size: 0
+0  END     3  DIRECTIVE                         
+-1  0   1   
+
+COST  EQU_IDENTIFIER        -1   STRT2 
+SSS   EQU_IDENTIFIER        -1   [EDX+2H]
+VAR2  WORD_USER_IDENTIFIER  -1   DATA1 
+VAR3  DWORD_USER_IDENTIFIER -1   DATA2 
+VAR4  WORD_USER_IDENTIFIER  -1   DATA2 
+L1    LABEL                 -1   CODE1 
+VAR   EQU_IDENTIFIER        -1   VAR3  
+STRT2 LABEL                 -1   CODE2 
+STR1  BYTE_USER_IDENTIFIER  -1   DATA1 
+STRT1 LABEL                 -1   CODE1 
+
+CODE2 42   0    0    
+CODE1 16   0    0    
+DATA2 7    0    0    
+DATA1 1    0    0    
+
+Error in line 1: INVALID_OPERAND_STRUCTURE
+Error in line 2: INVALID_OPERAND_STRUCTURE
+Error in line 31: INVALID_OPERAND_STRUCTURE
